@@ -19,41 +19,47 @@ public class MainServlet extends HttpServlet {
         out.println("<html><body>");
         out.println("<h1> Shopping Basket Management </h1>");
         out.println("<h2> Select a method </h2>");
-        out.println("<form><SELECT id =\"chooseMethod\" NAME=\"Choose a method\"> " +
-                "<OPTION id = \"add\"> Add an item\n" +
-                "<OPTION id = \"search\"> Search an item\n" +
-                "<OPTION id = \"show\"> Show all items of a basket\n" +
-                "<OPTION id = \"change\"> Change the quantity of a shopping item\n" +
-                " </SELECT></form>");
+        out.println("<form method=\"POST\">\n" +
+                "      <input type=\"submit\" name=\"choice\" value=\"Add an item\">\n" +
+                "    </form>");
+        out.println("<form method=\"POST\">\n" +
+                "      <input id=search type=\"submit\" name=\"choice\" value=\"Search for an item\">\n" +
+                "    </form>");
+        out.println("<form method=\"POST\">\n" +
+                "      <input id=show type=\"submit\" name=\"choice\" value=\"Show all items\">\n" +
+                "    </form>");
+        out.println("<form method=\"POST\">\n" +
+                "      <input id=change type=\"submit\" name=\"choice\" value=\"Change an items quantity\">\n" +
+                "    </form>");
         out.println("</body></html>");
-
 
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String chosenMethod = request.getParameter("chooseMethod");
+        String chosenMethod = request.getParameter("choice");
         PrintWriter out = response.getWriter();
-        out.write(chosenMethod);
-        switch (chosenMethod){
-            case "add":
-                response.sendRedirect("/add-item-servlet");
-                break;
-            case "search":
-                response.sendRedirect("/search-item-servlet");
-                break;
-            case "show":
-                response.sendRedirect("/get-all-items-servlet");
-                break;
-            case "change":
-                response.sendRedirect("/change-item-quantity-servlet");
-                break;
 
+        //response.sendRedirect(request.getContextPath() + "/add-item-servlet");
+
+        switch (chosenMethod){
+            case "Add an item":
+                response.sendRedirect(request.getContextPath() + "/add-item-servlet");
+                break;
+            case "Search for an item":
+                response.sendRedirect(request.getContextPath() + "/search-item-servlet");
+                break;
+            case "Show all items":
+                response.sendRedirect(request.getContextPath() + "/get-all-items-servlet");
+                break;
+            case "Change an items quantity":
+                response.sendRedirect(request.getContextPath() + "/change-item-quantity-servlet");
+                break;
+            default:
+                break;
 
         }
 
-
     }
-
 
     public void destroy() {
     }

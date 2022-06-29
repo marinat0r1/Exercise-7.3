@@ -11,7 +11,7 @@ import java.io.PrintWriter;
 public class AddItemServlet extends HttpServlet {
     public void init(){}
 
-    public void service(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         response.setContentType("text/html");
 
