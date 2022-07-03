@@ -18,7 +18,7 @@ public class AddItemServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         out.println("<html><body>");
-        out.println("<h1> Add item </h1>");
+        out.println("<h1> Item successfully added. </h1>");
         out.println("</body></html>");
     }
 }

@@ -12,13 +12,12 @@ public class ChangeItemQuantityServlet extends HttpServlet {
     public void init(){}
 
     public void service(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
         response.setContentType("text/html");
-
         PrintWriter out = response.getWriter();
 
+
         out.println("<html><body>");
-        out.println("<h1> Change item quantity </h1>");
+        out.println("<h1> Item quantity successfully changed. </h1>");
         out.println("</body></html>");
     }
 }

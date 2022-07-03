@@ -11,14 +11,17 @@ import java.io.PrintWriter;
 public class GetAllItemsServlet extends HttpServlet {
     public void init(){}
 
-    public void service(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
-
         PrintWriter out = response.getWriter();
 
+        ShoppingBasket basket = (ShoppingBasket) request.getSession().getAttribute("basket");
+
         out.println("<html><body>");
-        out.println("<h1> Get item </h1>");
+        out.println("<h1> Basket Overview </h1>");
+        for (ShoppingItem item : basket.getItems()) {
+            out.println(" Name: " + item.getName() + " Price: " + item.getPrice() + " Quantity: " + item.getQuantity() + "<br/>");
+        }
         out.println("</body></html>");
     }
 }

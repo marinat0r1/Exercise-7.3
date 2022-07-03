@@ -1,20 +1,24 @@
 package com.example.exercise73;
 
 import java.io.*;
+import java.util.HashSet;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
 @WebServlet(name = "mainServlet", value = "/main-servlet")
 public class MainServlet extends HttpServlet {
-    private BasketMethods basketMethods;
+
+    private ShoppingBasket shoppingBasket = new ShoppingBasket("basket", new HashSet<>());
 
     public void init() {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
-
         PrintWriter out = response.getWriter();
+
+        HttpSession session = request.getSession();
+        session.setAttribute("basket", shoppingBasket);
 
         out.println("<html><body>");
         out.println("<h1> Shopping Basket Management </h1>");
@@ -43,16 +47,16 @@ public class MainServlet extends HttpServlet {
 
         switch (chosenMethod){
             case "Add an item":
-                response.sendRedirect(request.getContextPath() + "/add-item-servlet");
+                response.sendRedirect(request.getContextPath() + "/data-for-add-item-servlet");
                 break;
             case "Search for an item":
-                response.sendRedirect(request.getContextPath() + "/search-item-servlet");
+                response.sendRedirect(request.getContextPath() + "/search-item-data-servlet");
                 break;
             case "Show all items":
                 response.sendRedirect(request.getContextPath() + "/get-all-items-servlet");
                 break;
             case "Change an items quantity":
-                response.sendRedirect(request.getContextPath() + "/change-item-quantity-servlet");
+                response.sendRedirect(request.getContextPath() + "/change-item-quantity-data-servlet");
                 break;
             default:
                 break;
