@@ -21,6 +21,7 @@ public class SearchItemDataServlet extends HttpServlet {
                 "Item Name: <input type=\"text\" name=\"itemName\"> <br/>" +
                 "<input type=\"submit\" value=\"Search Item\" /> </form> ");
         out.println("</body></html>");
+
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
